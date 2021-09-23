@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+ 
+int main() {
+	setlocale(LC_ALL, "Russian");
+	float e, x,  p;
+	double chek, cosx;
+	printf("Введите эпселон:\n");                   // напечать про ввод е 
+	scanf_s("%f", &e);                              // ввести е 
+	printf("Вы ввели: %f\n", e);                    // показать , какое е вы ввели
+	float arr[15] = { 1 };                          // задали массив
+	p = 2;                                          // пригодиться для факториалов в ряду тейлора 
+	for (int i = 0; i < 15; i++) {
+		cosx = arr[i];
+		printf("введите x:\n");                     // запросит ввести x
+		scanf_s("%f", &x);                        // ввод х с клавиатуры
+		arr[i] = 1;
+		for (int j = 1; j <= 50; j++) {             // Ограничение на 50 членов    
+			p = 2 * j;
+			for (int k = 1 ; k < p; k++) {                   //  цикл для рассчета факториала 
+				p = p * k;
+			}
+			printf("проверка факториала: %f\n", p);
+			chek = pow((-1), j)*pow(x, 2 * j) / p;           // Проверка очередного члена ряда 
+			cosx = cosx + chek;
+			if (chek <= e) {
+				break;
+			}
+
+				
+			 
+		}
+		printf("Вычесленное значение косинуса: %f\n", cosx);
+
+		
+	
+	
+	
+	}
+		
+	
+	return 0;
+}
